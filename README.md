@@ -1,2 +1,7 @@
-# herm-s
-Data Visualization project 
+# hermès
+
+Data Visualization project
+
+dataset : ./data/dataviz.csv
+
+script : .script/\*
