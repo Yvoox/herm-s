@@ -17,15 +17,23 @@ class Customer {
 }
 
 class Restaurant {
-  constructor(id, lat, long) {
+  constructor(id, lat, long, size) {
     this.id = id;
     this.lat = lat;
     this.long = long;
+    this.size = size;
   }
 
   toString() {
     let toString =
-      "ID: " + this.id + " LATITUDE: " + this.lat + " LONGITUDE: " + this.long;
+      "ID: " +
+      this.id +
+      " LATITUDE: " +
+      this.lat +
+      " LONGITUDE: " +
+      this.long +
+      " SIZE: " +
+      this.size;
     return toString;
   }
 
