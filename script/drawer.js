@@ -65,9 +65,6 @@ function createNodes(list) {
       color = d3.scale.category10();
   }
 
-  root.radius = 0;
-  root.fixed = true;
-
   nodes = nodes.concat(tempNodes);
 
   //console.log("NODES: " + JSON.stringify(nodes, 4, null));
