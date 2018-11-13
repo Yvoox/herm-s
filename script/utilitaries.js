@@ -25,6 +25,7 @@ function init() {
         .attr("width", width)
         .attr("height", height);
       createNodes(restaurantList);
+
       createNodes(customerList);
     }
   });
