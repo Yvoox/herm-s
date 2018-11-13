@@ -38,13 +38,13 @@ function createNodes(list) {
     console.log("DRAW RESTAURANTS");
     token = "restaurant";
     var tempNodes = list.map(function(e) {
-        var size = 10;
+        var size = 3;
         if (e.size < 10) {
-          size = 10;
+          size = 5;
         } else if (e.size > 10 && e.size < 50) {
-          size = 30;
+          size = 12;
         } else {
-          size = 50;
+          size = 20;
         }
         return {
           radius: size,
@@ -78,6 +78,29 @@ function drawInContainer() {
       var t = d3.transform(d3.select(this).attr("transform"));
       return { x: t.translate[0], y: t.translate[1] };
     });
+
+  const x_value_range = [
+    d3.min(nodes.slice(2), d => d.x),
+    d3.max(nodes.slice(2), d => d.x)
+  ];
+  const y_value_range = [
+    d3.min(nodes.slice(2), d => d.y),
+    d3.max(nodes.slice(2), d => d.y)
+  ];
+  /*console.log(x_value_range);
+   console.log(y_value_range);
+   console.log(d3.min(nodes.slice(2), d => d.radius));
+   console.log(d3.max(nodes.slice(2), d => d.radius));*/
+
+  const pointX_to_svgX = d3.scale
+    .linear()
+    .domain(x_value_range)
+    .range([0, width]);
+
+  const pointY_to_svgY = d3.scale
+    .linear()
+    .domain(y_value_range)
+    .range([height, 0]);
 
   force = d3.layout
     .force()
@@ -115,10 +138,10 @@ function drawInContainer() {
     .append("circle")
     .attr("class", "drawedNode")
     .attr("cx", function(d) {
-      return d.x * 10;
+      return pointX_to_svgX(d.x);
     })
     .attr("cy", function(d) {
-      return d.y * 10;
+      return pointY_to_svgY(d.y);
     })
     .attr("r", function(d) {
       return d.radius;
