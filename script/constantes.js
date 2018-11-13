@@ -2,12 +2,16 @@
 let EARTH_RADIUS = 6371000;
 let width = window.innerWidth,
   height = window.innerHeight;
-let svg;
 
+let nodes = [];
 let dataPath;
 let restaurantList = [];
 let customerList = [];
 let deliveryList = [];
+let dataLinks = [];
 
 //Drawer
 let svgContainer;
+let drawedNode = null;
+let links = null;
+let force = null;

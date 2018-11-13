@@ -24,14 +24,9 @@ function normalize(array, max, min) {
 function init() {
   csvImportD3(dataPath, function(ending) {
     if (ending) {
-      svg = d3
-        .select("body")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
-      createNodes(restaurantList);
-
-      createNodes(customerList);
+      initCreation(function(callback) {
+        if (callback) drawInContainer();
+      });
     }
   });
 }
@@ -59,4 +54,9 @@ function arrayNormalize(array) {
       minLat,
       minSize = 1000;
   }
+}
+
+function searchId(id) {
+  //console.log("NODES : " + JSON.stringify(nodes, 4, null));
+  return nodes.findIndex(x => x.data == id);
 }
