@@ -1,14 +1,15 @@
-function csvImportD3(path) {
+function csvImportD3(path, callback) {
   d3.csv(path, function(data) {
     if (typeof data !== "undefined" && data.length > 0) {
       var incr = 0;
+      var ending = false;
 
       console.log("DATA LOADED !");
       data.forEach(function(e) {
         var restToken = true;
         var custToken = true;
-        let rest = new Restaurant(incr, e.plat, e.plong);
-        let cust = new Customer(incr, e.dlat, e.dlong);
+        let rest = new Restaurant(incr, e.plat, e.plng, 0);
+        let cust = new Customer(incr, e.dlat, e.dlng);
 
         restaurantList.forEach(function(r) {
           if (rest.lat == r.lat && rest.long == r.long) {
@@ -17,7 +18,7 @@ function csvImportD3(path) {
           }
         });
         if (restToken) {
-          restaurantList.push(new Restaurant(incr, e.plat, e.plong, 0));
+          restaurantList.push(rest);
         }
 
         customerList.forEach(function(c) {
@@ -26,16 +27,23 @@ function csvImportD3(path) {
           }
         });
         if (custToken) {
-          customerList.push(new Customer(incr, e.dlat, e.dlong));
+          customerList.push(cust);
         }
-        dist = distance(e.plong, e.plat, e.dlong, e.dlat);
-        deliveryList.push(new Delivery(incr, incr, dist, e.t, e.road));
+        dist = distance(e.plng, e.plat, e.dlng, e.dlat);
+        //TODO : CHANGE REST AND CUST ID IF REST OR CUR ALREADY EXIST
+        deliveryList.push(
+          new Delivery(incr, rest.id, cust.id, dist, e.t, e.road)
+        );
         incr = incr + 1;
+        if (incr == data.length) ending = true;
       });
       console.log(
         "RESTAURANT LIST : " + JSON.stringify(restaurantList, 4, null)
       );
       console.log("CUSTOMER LIST : " + JSON.stringify(customerList, 4, null));
+      console.log("DELIVERY LIST : " + JSON.stringify(deliveryList, 4, null));
+
+      callback(ending);
     } else {
       console.log("DATA ERROR !");
     }
