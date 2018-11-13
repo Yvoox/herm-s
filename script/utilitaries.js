@@ -16,11 +16,6 @@ function normalize(val, max, min) {
   return (val - min) / (max - min);
 }
 
-/* Return an array with normalized values
-function normalize(array, max, min) {
-  return array.map(x => (x-min)/(max-min));
-}*/
-
 function init() {
   csvImportD3(dataPath, function(ending) {
     if (ending) {

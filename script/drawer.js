@@ -59,7 +59,7 @@ function createNodes(list) {
     console.log("DRAW CUSTOMERS");
     token = "customer";
     (nodes = list.map(function(e) {
-      return { radius: 2, x: e.lat, y: e.long };
+      return { radius: 10, x: e.lat, y: e.long };
     })),
       (root = nodes[0]),
       (color = d3.scale.category10());
@@ -79,49 +79,7 @@ function drawInContainer() {
       return { x: t.translate[0], y: t.translate[1] };
     });
 
-    const x_value_range = [d3.min(nodes.slice(2), d => d.x), d3.max(nodes.slice(2), d => d.x)];
-    const y_value_range = [d3.min(nodes.slice(2), d => d.y), d3.max(nodes.slice(2), d => d.y)];
-    /*console.log(x_value_range);
-    console.log(y_value_range);
-    console.log(d3.min(nodes.slice(2), d => d.radius));
-    console.log(d3.max(nodes.slice(2), d => d.radius));*/
-
-		const pointX_to_svgX = d3.scale.linear()
-			.domain(x_value_range)
-			.range([0, width]);
-
-		const pointY_to_svgY = d3.scale.linear()
-			.domain(y_value_range)
-			.range([height, 0]);
-
-    svg
-      .selectAll("circle")
-      .data(nodes.slice(2))
-      .enter()
-      .append("circle")
-      .attr("r", function(d) {
-        if (d.radius > 100) {
-          return 8;
-        }
-        else if (d.radius > 50) {
-          return 5;
-        }
-        else {
-          return 2;
-        }
-      })
-      .attr("cx", function(d) {
-        return pointX_to_svgX(d.x);
-      })
-      .attr("cy", function(d) {
-        return pointY_to_svgY(d.y);
-      })
-      .style("fill", function(d, i) {
-        if (token == "restaurant") return color(i % 3);
-        else if (token == "customer") return "grey";
-      })
-      .call(drag);
-  /*svg
+  svg
     .selectAll("circle")
     .data(nodes.slice(2))
     .enter()
@@ -165,7 +123,7 @@ function drawInContainer() {
     .attr("data", function(d) {
       return d.data;
     })
-    .call(drag);*/
+    .call(drag);
 
   force.on("tick", forceUpdate);
   console.log("NODES : " + JSON.stringify(nodes, 4, null));
