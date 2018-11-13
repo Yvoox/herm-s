@@ -18,7 +18,15 @@ function normalize(val, max, min) {
 
 function init() {
   csvImportD3(dataPath, function(ending) {
-    if (ending) createNodes();
+    if (ending) {
+      svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+      createNodes(customerList);
+      createNodes(restaurantList);
+    }
   });
 }
 //TODO BEFORE DRAWING
