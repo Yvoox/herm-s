@@ -24,8 +24,8 @@ function init() {
         .append("svg")
         .attr("width", width)
         .attr("height", height);
-      createNodes(customerList);
       createNodes(restaurantList);
+      createNodes(customerList);
     }
   });
 }
