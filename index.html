@@ -10,11 +10,44 @@
         <script type="text/javascript" src="script/constantes.js"></script>
         <script type="text/javascript" src="script/utilitaries.js"></script>
         <script type="text/javascript" src="script/drawer.js"></script>
+
+        <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
+      <nav>
+      	<ul class="width-limited">
+      		<li2><a>Hermes</a></li2>
+      		<li><a href="visualization.html">Visualization</a></li>
+          <li><a href="help.html">Help</a></li>
+          <li><a href="about.html">About</a></li>
+          <li3><span onclick="openNav()">&#9776;</span></li3>
+      	</ul>
+      </nav>
+
+      <div id="mySidenav" class="sidenav">
+        <a href="#"><input type="checkbox"> Geographical view</input></a>
+        <a href="#">Time slot</a>
+        <a href="#">Number of deliveries</a>
+        <a href="#">Food</a>
+        <a href="#"><button type="button">Go!</button></a>
+      </div>
+
         <script type="text/javascript">
         dataPath = "./data/dataviz.csv";
-init();
-</script>
+        init();
+        </script>
+
+        <script>
+        let open = false;
+        function openNav() {
+          if(open) {
+            document.getElementById("mySidenav").style.width = "0px";
+            open = false;
+          } else {
+            document.getElementById("mySidenav").style.width = "250px";
+            open = true;
+          }
+        }
+        </script>
     </body>
 </html>
