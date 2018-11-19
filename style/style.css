@@ -32,76 +32,61 @@ body {
 	font-size: 1.1rem;
 }
 
-/*
-It is easier to read if the text is not too wide, so we limit the width.
-We use the class selector ".", so this style will be applied to elements with class="width-limited"
-
-The various units of measurement available in CSS:
-	https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units
-*/
-.width-limited {
-	max-width: 55rem;
-
-	/* Center horizontally: */
-	/*margin-left: auto;
-	margin-right: auto;*/
-}
-
-/* Links: apply our theme color and remove underline */
 a {
-	color: rgb(255, 0, 127);
+	color: rgb(0,0,100);
 	text-decoration: none;
 }
 
-/* Top navigation bar */
-nav {
-	background-color: rgb(192,192,192);
-	width: 100%;
-
-	padding-top: 1rem;
-	padding-bottom: 1rem;
+h1 {
+	color: rgb(0,0,100);
+	text-decoration: underline;
 }
 
-/* Make the links in the navbar bold */
-nav a {
-	font-weight: bold;
+p {
+	color: rgb(0,0,100);
+	text-decoration: none;
+	font-size: 1rem;
 }
 
-/* Style of the list of links in the navbar */
-nav ul {
-
-	/* Clear defaults */
-	margin: 0;
-	padding: 0;
-
-	/* Remove list bullet points */
+ul {
 	list-style-type: none;
-
-	/*
-	Flexbox is a modern mechanism for arranging elements
-		https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-	This will arrange the elements in a row
-	*/
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+	overflow: hidden;
+  background-image: linear-gradient(90deg, white 5%, rgb(255,0,127));
 }
 
-/* Space between links */
-nav li2 {
+li {
+	float: right;
+}
+
+
+li a {
+	display: block;
+  color: rgb(0,0,100);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.boxed-hermes {
+	border: 2px solid rgb(0,0,100);
+	padding-left: 1%;
+	padding-right: 1%;
 	margin-left: 1rem;
-	margin-right: 28rem;
+	color: rgb(0,0,100);
+	background-color: rgb(255, 204, 229);
 }
 
-nav li {
-	margin-right: 2rem;
-}
-
-nav li3 {
-	color: rgb(255, 0, 127);
-	margin-left: 2rem;
-	font-size: 1.1rem;
-	cursor:pointer;
+.boxed {
+	border: 2px solid rgb(255,0,127);
+	margin-left: 25%;
+	margin-right: 25%;
+	margin-top: 10%;
+	padding-left: 1%;
+	padding-right: 1%;
+	background-color: rgb(255, 204, 229);
+	border-radius: 20px;
 }
 
 .sidenav {
@@ -126,5 +111,5 @@ nav li3 {
 }
 
 .sidenav a:hover {
-    /*color: white;*/
+    color: rgb(255,0,127);
 }
