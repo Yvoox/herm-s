@@ -9,6 +9,7 @@ let restaurantList = [];
 let customerList = [];
 let deliveryList = [];
 let dataLinks = [];
+let viewType = false; //false -> graph, true -> geographical
 
 //Drawer
 let svgContainer;
