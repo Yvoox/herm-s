@@ -38,13 +38,13 @@ function createNodes(list) {
     console.log("DRAW RESTAURANTS");
     token = "restaurant";
     var tempNodes = list.map(function(e) {
-        var size = 0;
+        var size = 3;
         if (e.size < 10) {
-          size = 2;
-        } else if (e.size > 10 && e.size < 50) {
           size = 5;
+        } else if (e.size > 10 && e.size < 50) {
+          size = 12;
         } else {
-          size = 8;
+          size = 20;
         }
         return {
           radius: size,
@@ -59,7 +59,7 @@ function createNodes(list) {
     console.log("DRAW CUSTOMERS");
     token = "customer";
     var tempNodes = list.map(function(e) {
-        return { radius: 2, x: e.lat, y: e.long, data: "c" + e.id };
+        return { radius: 10, x: e.lat, y: e.long, data: "c" + e.id };
       }),
       root = tempNodes[0],
       color = d3.scale.category10();
@@ -100,14 +100,14 @@ function drawInContainer() {
   const pointY_to_svgY = d3.scale
     .linear()
     .domain(y_value_range)
-    .range([height / 1.5, 0]);
+    .range([height, 0]);
 
   force = d3.layout
     .force()
     .size([width, height])
     .nodes(nodes)
     .links(dataLinks);
-  force.linkDistance(height / 8);
+  force.linkDistance(height / 2);
 
   links = svgContainer
     .selectAll(".links")
@@ -116,6 +116,7 @@ function drawInContainer() {
     .append("line")
     .attr("class", "links")
     .attr("x1", function(d) {
+      console.log(d.source);
       return nodes[d.source].x;
     })
     .attr("y1", function(d) {
@@ -128,7 +129,7 @@ function drawInContainer() {
       return nodes[d.target].y;
     })
     .attr("stroke", "black") // add this line
-    .attr("stroke-width", 0.1);
+    .attr("stroke-width", 2);
 
   drawedNode = svgContainer
     .selectAll(".drawedNode")
@@ -204,5 +205,8 @@ function initCreation(callback) {
       ending = true;
       callback(ending);
     }
+  });
+  svgContainer.selectAll(".link1")[0].forEach(function(x) {
+    console.log(x);
   });
 }
