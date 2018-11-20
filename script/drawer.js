@@ -38,18 +38,18 @@ function createNodes(list) {
     console.log("DRAW RESTAURANTS");
     token = "restaurant";
     var tempNodes = list.map(function(e) {
-        var size = 3;
+        var size = 0;
         if (e.size < 10) {
-          size = 5;
+          size = 2;
         } else if (e.size > 10 && e.size < 50) {
-          size = 12;
+          size = 5;
         } else {
-          size = 20;
+          size = 8;
         }
         return {
           radius: size,
-          x: parseInt(e.lat),
-          y: parseInt(e.long),
+          x: e.lat,
+          y: e.long,
           data: "r" + e.id
         };
       }),
@@ -59,7 +59,7 @@ function createNodes(list) {
     console.log("DRAW CUSTOMERS");
     token = "customer";
     var tempNodes = list.map(function(e) {
-        return { radius: 10, x: e.lat, y: e.long, data: "c" + e.id };
+        return { radius: 2, x: e.lat, y: e.long, data: "c" + e.id };
       }),
       root = tempNodes[0],
       color = d3.scale.category10();
@@ -87,10 +87,6 @@ function drawInContainer() {
     d3.min(nodes.slice(2), d => d.y),
     d3.max(nodes.slice(2), d => d.y)
   ];
-  /*console.log(x_value_range);
-   console.log(y_value_range);
-   console.log(d3.min(nodes.slice(2), d => d.radius));
-   console.log(d3.max(nodes.slice(2), d => d.radius));*/
 
   const pointX_to_svgX = d3.scale
     .linear()
@@ -107,7 +103,7 @@ function drawInContainer() {
     .size([width, height])
     .nodes(nodes)
     .links(dataLinks);
-  force.linkDistance(height / 2);
+  force.linkDistance(height / 4);
 
   links = svgContainer
     .selectAll(".links")
@@ -116,7 +112,7 @@ function drawInContainer() {
     .append("line")
     .attr("class", "links")
     .attr("x1", function(d) {
-      console.log(d.source);
+      //console.log(d.source);
       return nodes[d.source].x;
     })
     .attr("y1", function(d) {
@@ -129,7 +125,7 @@ function drawInContainer() {
       return nodes[d.target].y;
     })
     .attr("stroke", "black") // add this line
-    .attr("stroke-width", 2);
+    .attr("stroke-width", 0.1);
 
   drawedNode = svgContainer
     .selectAll(".drawedNode")
@@ -161,16 +157,16 @@ function drawInContainer() {
 
   console.log("DRAWEDNODE : " + JSON.stringify(drawedNode, 4, null));
 
-  force.start();
+  //force.start();
 }
 
 function forceUpdate() {
   drawedNode
     .attr("cx", function(d) {
-      return parseInt(d.x);
+      return d.x;
     })
     .attr("cy", function(d) {
-      return parseInt(d.y);
+      return d.y;
     });
 
   links
