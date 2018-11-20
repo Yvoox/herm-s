@@ -23,7 +23,7 @@
       </ul>
 
       <div id="mySidenav" class="sidenav">
-        <a href="#"><input type="checkbox"> Geographical view</input></a><br>
+        <a href="#"><input type="checkbox" id="reprType"> Geographical view</input></a><br>
         <a href="#">Time slot:<br><p>From: <input list="slots" name="timeslot" style="width: 40px;">
           <datalist id="slots">
             <option value="00h">
@@ -96,20 +96,22 @@
 
         <script type="text/javascript">
         dataPath = "./data/dataviz.csv";
-        init();
-        </script>
+init();
+d3.select("#reprType").on("change", updateUI);
+updateUI();
+</script>
 
         <script>
         let open = false;
-        function openNav() {
-          if(open) {
-            document.getElementById("mySidenav").style.width = "0px";
-            open = false;
-          } else {
-            document.getElementById("mySidenav").style.width = "250px";
-            open = true;
-          }
-        }
-        </script>
+function openNav() {
+  if (open) {
+    document.getElementById("mySidenav").style.width = "0px";
+    open = false;
+  } else {
+    document.getElementById("mySidenav").style.width = "250px";
+    open = true;
+  }
+}
+</script>
     </body>
 </html>
