@@ -235,7 +235,8 @@ function initCreation(callback) {
 function updateUI() {
   let hourStart = d3.select("#hourStart").property("value");
   let hourEnd = d3.select("#hourEnd").property("value");
-  let orderNumber = d3.select("#orderNumber").property("value");
+  let orderMin = d3.select("#orderMin").property("value");
+  let orderMax = d3.select("#orderMax").property("value");
 
   if (hourStart != "" && hourEnd != "" && hourStart < hourEnd) {
     timeSelection(hourStart, hourEnd);
@@ -247,9 +248,8 @@ function updateUI() {
     customerList = importCustomerList;
     deliveryList = importDeliveryList;
   }
-  if (orderNumber != "") {
-    console.log("ORDERNUMBER: " + orderNumber);
-    orderSelection(orderNumber);
+  if (orderMin != "" && orderMax != "") {
+    orderSelection(orderMin, orderMax);
     cleanRepresentation();
     init();
   }
@@ -265,7 +265,8 @@ function updateUI() {
 function restartUI() {
   d3.select("#hourStart").property("value", "");
   d3.select("#hourEnd").property("value", "");
-  d3.select("#orderNumber").property("value", "");
+  d3.select("#orderMin").property("value", "");
+  d3.select("#orderMax").property("value", "");
   customerList = importCustomerList;
   restaurantList = importRestaurantList;
   deliveryList = importDeliveryList;

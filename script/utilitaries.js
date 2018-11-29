@@ -84,33 +84,28 @@ function timeSelection(hourStart, hourEnd) {
   customerList = uniq(customerList);
 }
 
-function orderSelection(orderNumber) {
+function orderSelection(orderMin, orderMax) {
   var restaurantIds = [];
   var customerIds = [];
   restaurantList = restaurantList.filter(
-    restaurant => restaurant.size >= orderNumber
+    restaurant => restaurant.size >= orderMin && restaurant.size <= orderMax
   );
-  console.log(
-    "NEW RESTAURANT LIST: " + JSON.stringify(restaurantList, 4, null)
-  );
+
+  console.log();
   restaurantList.map(curr => {
     restaurantIds.push(curr.id);
   });
-  console.log("RESTAURANT IDS: " + JSON.stringify(restaurantIds, 4, null));
   deliveryList = deliveryList.filter(delivery =>
     restaurantIds.includes(delivery.restaurantId)
   );
-  console.log("NEW DELIVERY LIST: " + JSON.stringify(deliveryList, 4, null));
   deliveryList.map(curr => {
     customerIds.push(curr.customerId);
   });
-  console.log("CUSTOMER IDS: " + JSON.stringify(customerIds, 4, null));
 
   customerList = customerList.filter(customer =>
     customerIds.includes(customer.id)
   );
   customerList = uniq(customerList);
-  console.log("NEW CUSTOMER LIST: " + JSON.stringify(customerList, 4, null));
 }
 
 function cleanRepresentation() {
