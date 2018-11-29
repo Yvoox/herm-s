@@ -92,12 +92,12 @@
             <option value="Tacos">
           </datalist></p><br>
           <p><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI()">Go!</button>
-        <button type="button" style="width: 50px;" id="buttonRestart" onclick="updateUI()">Restart</button></p>
+        <button type="button" style="width: 50px;" id="buttonRestart" onclick="restartUI()">Restart</button></p>
       </div>
 
         <script type="text/javascript">
         dataPath = "./data/dataviz.csv"; csvImportD3(dataPath, function(ending) {
-if(ending) init(); }); d3.select("#buttonGo").on("change",updateUI);
+if(ending) init(); });
 </script>
 
         <script>

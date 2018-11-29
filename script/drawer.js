@@ -261,3 +261,14 @@ function updateUI() {
     init();
   }
 }
+
+function restartUI() {
+  d3.select("#hourStart").property("value", "");
+  d3.select("#hourEnd").property("value", "");
+  d3.select("#orderNumber").property("value", "");
+  customerList = importCustomerList;
+  restaurantList = importRestaurantList;
+  deliveryList = importDeliveryList;
+  cleanRepresentation();
+  init();
+}
