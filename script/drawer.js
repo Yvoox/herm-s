@@ -248,6 +248,7 @@ function updateUI() {
     deliveryList = importDeliveryList;
   }
   if (orderNumber != "") {
+    console.log("ORDERNUMBER: " + orderNumber);
     orderSelection(orderNumber);
     cleanRepresentation();
     init();
