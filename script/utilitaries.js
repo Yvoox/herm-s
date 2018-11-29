@@ -55,3 +55,28 @@ function searchId(id) {
   //console.log("NODES : " + JSON.stringify(nodes, 4, null));
   return nodes.findIndex(x => x.data == id);
 }
+
+function timeSelection(hourStart, hourEnd) {
+  deliveryList.map(x => {
+    var deliveryTime = x.t.substring(0, 2);
+    if (deliveryTime > hourStart && deliveryTime < hourEnd) {
+      console.log(JSON.stringify(x, 4, null));
+    }
+  });
+}
+
+function cleanRepresentation() {
+  if (force != null) force.stop();
+
+  force = null;
+  drawedNode = [];
+
+  nodes = [];
+  dataLinks = [];
+  restaurantList = [];
+  customerList = [];
+  deliveryList = [];
+  links = null;
+
+  svgContainer = d3.select("svg").remove();
+}

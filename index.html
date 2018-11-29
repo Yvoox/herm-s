@@ -24,58 +24,58 @@
 
       <div id="mySidenav" class="sidenav">
         <a href="#"><input type="checkbox" id="reprType"> Geographical view</input></a><br>
-        <a href="#">Time slot:<br><p>From: <input list="slots" name="timeslot" style="width: 40px;">
+        <a href="#">Time slot:<br><p>From: <input list="slots" name="timeslot" style="width: 40px;" id="hourStart">
           <datalist id="slots">
-            <option value="00h">
-            <option value="01h">
-            <option value="02h">
-            <option value="03h">
-            <option value="04h">
-            <option value="05h">
-            <option value="06h">
-            <option value="07h">
-            <option value="08h">
-            <option value="09h">
-            <option value="10h">
-            <option value="11h">
-            <option value="12h">
-            <option value="13h">
-            <option value="14h">
-            <option value="15h">
-            <option value="16h">
-            <option value="17h">
-            <option value="18h">
-            <option value="19h">
-            <option value="20h">
-            <option value="21h">
-            <option value="22h">
-            <option value="23h">
-          </datalist>To: <input list="slots" name="timeslot" style="width: 40px;">
+            <option value="00">
+            <option value="01">
+            <option value="02">
+            <option value="03">
+            <option value="04">
+            <option value="05">
+            <option value="06">
+            <option value="07">
+            <option value="08">
+            <option value="09">
+            <option value="10">
+            <option value="11">
+            <option value="12">
+            <option value="13">
+            <option value="14">
+            <option value="15">
+            <option value="16">
+            <option value="17">
+            <option value="18">
+            <option value="19">
+            <option value="20">
+            <option value="21">
+            <option value="22">
+            <option value="23">
+          </datalist>To: <input list="slots" name="timeslot" style="width: 40px;" id="hourEnd">
           <datalist id="slots">
-            <option value="00h">
-            <option value="01h">
-            <option value="02h">
-            <option value="03h">
-            <option value="04h">
-            <option value="05h">
-            <option value="06h">
-            <option value="07h">
-            <option value="08h">
-            <option value="09h">
-            <option value="10h">
-            <option value="11h">
-            <option value="12h">
-            <option value="13h">
-            <option value="14h">
-            <option value="15h">
-            <option value="16h">
-            <option value="17h">
-            <option value="18h">
-            <option value="19h">
-            <option value="20h">
-            <option value="21h">
-            <option value="22h">
-            <option value="23h">
+            <option value="00">
+            <option value="01">
+            <option value="02">
+            <option value="03">
+            <option value="04">
+            <option value="05">
+            <option value="06">
+            <option value="07">
+            <option value="08">
+            <option value="09">
+            <option value="10">
+            <option value="11">
+            <option value="12">
+            <option value="13">
+            <option value="14">
+            <option value="15">
+            <option value="16">
+            <option value="17">
+            <option value="18">
+            <option value="19">
+            <option value="20">
+            <option value="21">
+            <option value="22">
+            <option value="23">
           </datalist></p></a>
         <a href="#">Number of orders:<br><input type="text" name="number" style="width: 100px;"></a><br>
         <a href="#">Food:<br><input list="food" name="foodtype" style="width: 100px;">
@@ -91,27 +91,18 @@
             <option value="Sushi">
             <option value="Tacos">
           </datalist></a><br>
-        <a href="#"><button type="button" style="width: 50px;">Go!</button></a>
+        <a href="#"><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI()">Go!</button></a>
       </div>
 
         <script type="text/javascript">
-        dataPath = "./data/dataviz.csv";
-init();
-d3.select("#reprType").on("change", updateUI);
-updateUI();
+        dataPath = "./data/dataviz.csv"; init();
+d3.select("#buttonGo").on("change",updateUI);
 </script>
 
         <script>
-        let open = false;
-function openNav() {
-  if (open) {
-    document.getElementById("mySidenav").style.width = "0px";
-    open = false;
-  } else {
-    document.getElementById("mySidenav").style.width = "250px";
-    open = true;
-  }
-}
+        let open = false; function openNav() { if (open) {
+document.getElementById("mySidenav").style.width = "0px"; open = false; } else {
+document.getElementById("mySidenav").style.width = "250px"; open = true; } }
 </script>
     </body>
 </html>

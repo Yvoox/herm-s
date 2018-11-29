@@ -10,6 +10,7 @@ let customerList = [];
 let deliveryList = [];
 let dataLinks = [];
 let viewType = false; //false -> graph, true -> geographical
+let memoryView = false;
 
 //Drawer
 let svgContainer;

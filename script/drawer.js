@@ -176,15 +176,14 @@ function drawInContainer() {
     })
     .call(drag);
 
+  console.log("NODES : " + JSON.stringify(nodes, 4, null));
+  console.log("SVGCONTAINER : " + JSON.stringify(svgContainer, 4, null));
+  console.log("DRAWEDNODE : " + JSON.stringify(drawedNode, 4, null));
+
   if (!viewType) {
     force.on("tick", forceUpdate);
     force.start();
   }
-
-  console.log("NODES : " + JSON.stringify(nodes, 4, null));
-  console.log("SVGCONTAINER : " + JSON.stringify(svgContainer, 4, null));
-
-  console.log("DRAWEDNODE : " + JSON.stringify(drawedNode, 4, null));
 }
 
 function forceUpdate() {
@@ -234,28 +233,19 @@ function initCreation(callback) {
 }
 
 function updateUI() {
-  if (d3.select("#reprType").property("checked")) {
-    console.log("CHECK");
-
-    viewType = true;
-  } else {
-    console.log("NOT CHECK");
-    viewType = false;
-  }
-  if (typeof svgContainer !== "undefined") {
-    //svgContainer.selectAll("*").remove();
-    force = null;
-    drawedNode = null;
-
-    nodes = [];
-    dataLinks = [];
-    restaurantList = [];
-    customerList = [];
-    deliveryList = [];
-    links = null;
-
-    svgContainer = d3.select("svg").remove();
-
+  let hourStart = d3.select("#hourStart").property("value");
+  let hourEnd = d3.select("#hourEnd").property("value");
+  if (hourStart != "" && hourEnd != "" && hourStart < hourEnd) {
+    timeSelection(hourStart, hourEnd);
+    cleanRepresentation();
     init();
   }
+  viewType = d3.select("#reprType").property("checked");
+  if (typeof svgContainer !== "undefined" && viewType != memoryView) {
+    //svgContainer.selectAll("*").remove();
+    memoryView = viewType;
+    cleanRepresentation();
+    init();
+  }
+  console.log(viewType);
 }
