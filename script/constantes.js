@@ -5,6 +5,9 @@ let width = window.innerWidth,
 
 let nodes = [];
 let dataPath;
+let importRestaurantList = [];
+let importCustomerList = [];
+let importDeliveryList = [];
 let restaurantList = [];
 let customerList = [];
 let deliveryList = [];

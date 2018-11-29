@@ -238,7 +238,12 @@ function updateUI() {
   if (hourStart != "" && hourEnd != "" && hourStart < hourEnd) {
     timeSelection(hourStart, hourEnd);
     cleanRepresentation();
+
     init();
+  } else {
+    restaurantList = importRestaurantList;
+    customerList = importCustomerList;
+    deliveryList = importDeliveryList;
   }
   viewType = d3.select("#reprType").property("checked");
   if (typeof svgContainer !== "undefined" && viewType != memoryView) {

@@ -35,6 +35,9 @@ function csvImportD3(path, callback) {
       console.log("DELIVERY SIZE : " + deliveryList.length);
       console.log("RESTAURANT SIZE : " + restaurantList.length);
       console.log("CUSTOMER SIZE : " + customerList.length);
+      importRestaurantList = restaurantList;
+      importCustomerList = customerList;
+      importDeliveryList = deliveryList;
       callback(ending);
     } else {
       console.log("DATA ERROR !");

@@ -53,12 +53,32 @@ function searchId(id) {
 }
 
 function timeSelection(hourStart, hourEnd) {
-  deliveryList.map(x => {
+  restaurantList = [];
+  customerList = [];
+  deliveryList = [];
+
+  importDeliveryList.forEach(function(x) {
     var deliveryTime = x.t.substring(0, 2);
     if (deliveryTime > hourStart && deliveryTime < hourEnd) {
-      console.log(JSON.stringify(x, 4, null));
+      deliveryList.push(x);
     }
   });
+
+  deliveryList.map(x => {
+    restaurantList.push(
+      importRestaurantList[
+        importRestaurantList.findIndex(rest => rest.id == x.restaurantId)
+      ]
+    );
+    customerList.push(
+      importCustomerList[
+        importCustomerList.findIndex(cust => cust.id == x.customerId)
+      ]
+    );
+  });
+
+  restaurantList = uniq(restaurantList);
+  customerList = uniq(customerList);
 }
 
 function cleanRepresentation() {
@@ -72,4 +92,8 @@ function cleanRepresentation() {
   links = null;
 
   svgContainer = d3.select("svg").remove();
+}
+
+function uniq(a) {
+  return Array.from(new Set(a));
 }
