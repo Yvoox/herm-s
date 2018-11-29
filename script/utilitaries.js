@@ -65,21 +65,26 @@ function timeSelection(hourStart, hourEnd) {
   });
 
   deliveryList.map(x => {
-    restaurantList.push(
-      importRestaurantList[
-        importRestaurantList.findIndex(rest => rest.id == x.restaurantId)
-      ]
+    var restIndex = importRestaurantList.findIndex(
+      rest => rest.id == x.restaurantId
     );
-    customerList.push(
-      importCustomerList[
-        importCustomerList.findIndex(cust => cust.id == x.customerId)
-      ]
+    var checkRest = restaurantList.findIndex(rest => rest.id == x.restaurantId);
+    var custIndex = importCustomerList.findIndex(
+      cust => cust.id == x.customerId
     );
+    if (checkRest == -1) {
+      restaurantList.push(importRestaurantList[restIndex]);
+      restaurantList[restaurantList.length - 1].size = 0;
+    } else {
+      restaurantList[checkRest].size = restaurantList[checkRest].size + 1;
+    }
+    customerList.push(importCustomerList[custIndex]);
   });
 
-  restaurantList = uniq(restaurantList);
   customerList = uniq(customerList);
 }
+
+function orderSelection(orderNumber) {}
 
 function cleanRepresentation() {
   if (force != null) force.stop();

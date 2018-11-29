@@ -23,8 +23,8 @@
       </ul>
 
       <div id="mySidenav" class="sidenav">
-        <a href="#"><input type="checkbox" id="reprType"> Geographical view</input></a><br>
-        <a href="#">Time slot:<br><p>From: <input list="slots" name="timeslot" style="width: 40px;" id="hourStart">
+        <p><input type="checkbox" id="reprType"> Geographical view</input></p><br>
+        <p>Time slot:<br><p>From: <input list="slots" name="timeslot" style="width: 40px;" id="hourStart">
           <datalist id="slots">
             <option value="00">
             <option value="01">
@@ -76,9 +76,9 @@
             <option value="21">
             <option value="22">
             <option value="23">
-          </datalist></p></a>
-        <a href="#">Number of orders:<br><input type="text" name="number" style="width: 100px;"></a><br>
-        <a href="#">Food:<br><input list="food" name="foodtype" style="width: 100px;">
+          </datalist></p></p>
+        <p>Number of orders:<br><input type="text" name="number" style="width: 100px;" id="orderNumber"></p><br>
+        <p>Food:<br><input list="food" name="foodtype" style="width: 100px;">
           <datalist id="food">
             <option value="Breakfast">
             <option value="Burger">
@@ -90,8 +90,9 @@
             <option value="Sandwich">
             <option value="Sushi">
             <option value="Tacos">
-          </datalist></a><br>
-        <a href="#"><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI()">Go!</button></a>
+          </datalist></p><br>
+          <p><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI()">Go!</button>
+        <button type="button" style="width: 50px;" id="buttonRestart" onclick="updateUI()">Restart</button></p>
       </div>
 
         <script type="text/javascript">

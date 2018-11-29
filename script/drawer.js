@@ -235,6 +235,8 @@ function initCreation(callback) {
 function updateUI() {
   let hourStart = d3.select("#hourStart").property("value");
   let hourEnd = d3.select("#hourEnd").property("value");
+  let orderNumber = d3.select("#orderNumber").property("value");
+
   if (hourStart != "" && hourEnd != "" && hourStart < hourEnd) {
     timeSelection(hourStart, hourEnd);
     cleanRepresentation();
@@ -244,6 +246,11 @@ function updateUI() {
     restaurantList = importRestaurantList;
     customerList = importCustomerList;
     deliveryList = importDeliveryList;
+  }
+  if (orderNumber != "") {
+    orderSelection(orderNumber);
+    cleanRepresentation();
+    init();
   }
   viewType = d3.select("#reprType").property("checked");
   if (typeof svgContainer !== "undefined" && viewType != memoryView) {
