@@ -4,7 +4,20 @@ function createSVGContainer() {
     .select("body")
     .append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .call(
+      d3.behavior.zoom().on("zoom", function() {
+        svgContainer.attr(
+          "transform",
+          "translate(" +
+            d3.event.translate +
+            ")" +
+            " scale(" +
+            d3.event.scale +
+            ")"
+        );
+      })
+    );
 }
 
 function createCircle(x, y, r) {
