@@ -95,8 +95,8 @@
       </div>
 
         <script type="text/javascript">
-        dataPath = "./data/dataviz.csv"; init();
-d3.select("#buttonGo").on("change",updateUI);
+        dataPath = "./data/dataviz.csv"; csvImportD3(dataPath, function(ending) {
+if(ending) init(); }); d3.select("#buttonGo").on("change",updateUI);
 </script>
 
         <script>

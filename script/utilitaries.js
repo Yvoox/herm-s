@@ -17,12 +17,8 @@ function normalize(val, max, min) {
 }
 
 function init() {
-  csvImportD3(dataPath, function(ending) {
-    if (ending) {
-      initCreation(function(callback) {
-        if (callback) drawInContainer();
-      });
-    }
+  initCreation(function(callback) {
+    if (callback) drawInContainer();
   });
 }
 //TODO BEFORE DRAWING
@@ -73,9 +69,6 @@ function cleanRepresentation() {
 
   nodes = [];
   dataLinks = [];
-  restaurantList = [];
-  customerList = [];
-  deliveryList = [];
   links = null;
 
   svgContainer = d3.select("svg").remove();

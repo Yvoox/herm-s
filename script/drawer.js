@@ -247,5 +247,4 @@ function updateUI() {
     cleanRepresentation();
     init();
   }
-  console.log(viewType);
 }
