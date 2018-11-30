@@ -122,7 +122,30 @@ function cleanRepresentation() {
 }
 
 function displayInformations(object) {
+  const x_value_range = [
+    d3.min(nodes.slice(2), d => d.x),
+    d3.max(nodes.slice(2), d => d.x)
+  ];
+  const y_value_range = [
+    d3.min(nodes.slice(2), d => d.y),
+    d3.max(nodes.slice(2), d => d.y)
+  ];
+
+  const pointX_to_svgX = d3.scale
+    .linear()
+    .domain(x_value_range)
+    .range([0, width]);
+
+  const pointY_to_svgY = d3.scale
+    .linear()
+    .domain(y_value_range)
+    .range([height, 0]);
   d3.select("#text").remove();
+  d3.select("#label").remove();
+  rectangleLabel = svgContainer
+    .append("rect")
+    .attr("id", "label")
+    .attr("opacity", 100);
   console.log(
     "ID:" +
       object.object.id +
@@ -131,6 +154,13 @@ function displayInformations(object) {
       " LONG: " +
       object.object.long
   );
+  if (!viewType) {
+    var x = object.x;
+    var y = object.y;
+  } else {
+    var x = pointX_to_svgX(object.x);
+    var y = pointY_to_svgY(object.y);
+  }
   if (object.object instanceof Restaurant) {
     d3.json(
       "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
@@ -155,10 +185,10 @@ function displayInformations(object) {
           .attr({
             id: "text",
             x: function() {
-              return object.x - 30;
+              return x - 30;
             },
             y: function() {
-              return object.y - 15;
+              return y - 15;
             }
           })
           .attr("fill", "black")
@@ -200,10 +230,10 @@ function displayInformations(object) {
           .attr({
             id: "text",
             x: function() {
-              return object.x - 30;
+              return x - 30;
             },
             y: function() {
-              return object.y - 15;
+              return y - 15;
             }
           })
           .attr("fill", "black")
