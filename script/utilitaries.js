@@ -165,7 +165,7 @@ function displayInformations(object) {
     .linear()
     .domain(y_value_range)
     .range([height, 0]);
-  d3.select("#text").remove();
+  d3.selectAll("#text").remove();
   d3.select("#label").remove();
   rectangleLabel = svgContainer
     .append("rect")
@@ -194,14 +194,11 @@ function displayInformations(object) {
         object.object.long +
         "&key=AIzaSyB9Tdu8PtVPicW1aNqi24jDsKxboS9DOQE",
       function(data) {
-        var text = svgContainer
+        var address = svgContainer
           .append("text")
           .text(function() {
             return [
-              " Restaurant address: " +
-                data.results[0].formatted_address +
-                " Number of orders: " +
-                object.object.size
+              " Restaurant address: " + data.results[0].formatted_address
             ];
           })
           .attr("font-family", "Arial")
@@ -219,15 +216,42 @@ function displayInformations(object) {
           .attr("fill", "black")
           .attr("stroke", "black")
           .attr("stroke-width", ".2px");
+        var addressBbox = address.node().getBBox();
 
-        var bbox = text.node().getBBox();
+        var order = svgContainer
+          .append("text")
+          .text(function() {
+            return [" Number of orders: " + object.object.size];
+          })
+          .attr("font-family", "Arial")
+          .attr("font-weight", "bold")
+          .attr("font-size", "16px")
+          .attr({
+            id: "text",
+            x: function() {
+              return x - 30;
+            },
+            y: function() {
+              return y - 15 - addressBbox.height;
+            }
+          })
+          .attr("fill", "black")
+          .attr("stroke", "black")
+          .attr("stroke-width", ".2px");
+
+        var orderBbox = order.node().getBBox();
         rectangleLabel
-          .attr("x", bbox.x - 6)
-          .attr("y", bbox.y)
+          .attr("x", orderBbox.x - 6)
+          .attr("y", orderBbox.y)
           .attr("rx", 10)
           .attr("ry", 10)
-          .attr("width", bbox.width + 12)
-          .attr("height", bbox.height)
+          .attr(
+            "width",
+            addressBbox.width > orderBbox.width
+              ? addressBbox.width + 12
+              : orderBbox.width + 12
+          )
+          .attr("height", addressBbox.height + orderBbox.height)
           .attr("fill", "pink");
       }
     );
@@ -249,15 +273,10 @@ function displayInformations(object) {
         object.object.long +
         "&key=AIzaSyB9Tdu8PtVPicW1aNqi24jDsKxboS9DOQE",
       function(data) {
-        var text = svgContainer
+        var address = svgContainer
           .append("text")
           .text(function() {
-            return [
-              " Client address: " +
-                data.results[0].formatted_address +
-                " Number of orders: " +
-                object.object.nbCommande
-            ];
+            return [" Customer address: " + data.results[0].formatted_address];
           })
           .attr("font-family", "Arial")
           .attr("font-weight", "bold")
@@ -274,15 +293,42 @@ function displayInformations(object) {
           .attr("fill", "black")
           .attr("stroke", "black")
           .attr("stroke-width", ".2px");
+        var addressBbox = address.node().getBBox();
 
-        var bbox = text.node().getBBox();
+        var order = svgContainer
+          .append("text")
+          .text(function() {
+            return [" Number of orders: " + object.object.nbCommande];
+          })
+          .attr("font-family", "Arial")
+          .attr("font-weight", "bold")
+          .attr("font-size", "16px")
+          .attr({
+            id: "text",
+            x: function() {
+              return x - 30;
+            },
+            y: function() {
+              return y - 15 - addressBbox.height;
+            }
+          })
+          .attr("fill", "black")
+          .attr("stroke", "black")
+          .attr("stroke-width", ".2px");
+
+        var orderBbox = order.node().getBBox();
         rectangleLabel
-          .attr("x", bbox.x - 6)
-          .attr("y", bbox.y)
+          .attr("x", orderBbox.x - 6)
+          .attr("y", orderBbox.y)
           .attr("rx", 10)
           .attr("ry", 10)
-          .attr("width", bbox.width + 12)
-          .attr("height", bbox.height)
+          .attr(
+            "width",
+            addressBbox.width > orderBbox.width
+              ? addressBbox.width + 12
+              : orderBbox.width + 12
+          )
+          .attr("height", addressBbox.height + orderBbox.height)
           .attr("fill", "pink");
       }
     );

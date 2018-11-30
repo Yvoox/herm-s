@@ -6,7 +6,7 @@ function createSVGContainer() {
     .attr("width", width)
     .attr("height", height)
     .on("click", function() {
-      d3.select("#text").remove();
+      d3.selectAll("#text").remove();
       d3.select("#label").remove();
       closeNav();
     })
