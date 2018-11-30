@@ -24,6 +24,7 @@ function csvImportD3(path, callback) {
           customerList.push(cust);
         } else {
           cust = customerList[custIndex];
+          cust.nbCommande += 1;
         }
         dist = distance(rest.long, rest.lat, cust.long, cust.lat);
         delivery = new Delivery(incr, rest.id, cust.id, dist, e.t, e.road);

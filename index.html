@@ -77,20 +77,9 @@
             <option value="22">
             <option value="23">
           </datalist></p></p>
-        <p>Number of orders:<br><p>From : </p><input type="text" name="number" style="width: 100px;" id="orderMin"><p>To:</p><input type="text" name="number" style="width: 100px;" id="orderMax"></p><br>
-        <p>Food:<br><input list="food" name="foodtype" style="width: 100px;">
-          <datalist id="food">
-            <option value="Breakfast">
-            <option value="Burger">
-            <option value="Chicken">
-            <option value="Kebab">
-            <option value="Pasta">
-            <option value="Pizza">
-            <option value="Salad">
-            <option value="Sandwich">
-            <option value="Sushi">
-            <option value="Tacos">
-          </datalist></p><br>
+        <p>Number of orders (restaurant):<br><p>From : </p><input type="text" name="number" style="width: 100px;" id="orderMin"><p>To:</p><input type="text" name="number" style="width: 100px;" id="orderMax"></p><br>
+        <p>Number of orders (customer):<br><p>From : </p><input type="text" name="number" style="width: 100px;" id="orderMinC"><p>To:</p><input type="text" name="number" style="width: 100px;" id="orderMaxC"></p><br>
+
           <p><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI()">Go!</button>
         <button type="button" style="width: 50px;" id="buttonRestart" onclick="restartUI()">Restart</button></p>
       </div>

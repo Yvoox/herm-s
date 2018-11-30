@@ -108,6 +108,31 @@ function orderSelection(orderMin, orderMax) {
   customerList = uniq(customerList);
 }
 
+function customerSelection(orderMin, orderMax) {
+  var restaurantIds = [];
+  var customerIds = [];
+  customerList = customerList.filter(
+    customer =>
+      customer.nbCommande >= orderMin && customer.nbCommande <= orderMax
+  );
+
+  console.log(JSON.stringify(customerList, 4, null));
+  customerList.map(curr => {
+    customerIds.push(curr.id);
+  });
+  deliveryList = deliveryList.filter(delivery =>
+    customerIds.includes(delivery.customerId)
+  );
+  deliveryList.map(curr => {
+    restaurantIds.push(curr.restaurantId);
+  });
+
+  restaurantList = restaurantList.filter(restaurant =>
+    restaurantIds.includes(restaurant.id)
+  );
+  customerList = uniq(customerList);
+}
+
 function cleanRepresentation() {
   if (force != null) force.stop();
 
@@ -173,10 +198,10 @@ function displayInformations(object) {
           .append("text")
           .text(function() {
             return [
-              "Restaurant id: " +
-                object.object.id +
-                " address: " +
-                data.results[0].formatted_address
+              " Restaurant address: " +
+                data.results[0].formatted_address +
+                " Number of orders: " +
+                object.object.size
             ];
           })
           .attr("font-family", "Arial")
@@ -206,6 +231,16 @@ function displayInformations(object) {
           .attr("fill", "pink");
       }
     );
+    /*d3.json(
+      "https://maps.googleapis.com/maps/api/place/textsearch/jsonp?query=restaurants&location=" +
+        object.object.lat +
+        "," +
+        object.object.long +
+        "&radius=1&key=AIzaSyB9Tdu8PtVPicW1aNqi24jDsKxboS9DOQE",
+      function(data) {
+        console.log(data);
+      }
+    );*/
   } else {
     d3.json(
       "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
@@ -218,10 +253,10 @@ function displayInformations(object) {
           .append("text")
           .text(function() {
             return [
-              "Client id: " +
-                object.object.id +
-                " address: " +
-                data.results[0].formatted_address
+              " Client address: " +
+                data.results[0].formatted_address +
+                " Number of orders: " +
+                object.object.nbCommande
             ];
           })
           .attr("font-family", "Arial")

@@ -3,11 +3,19 @@ class Customer {
     this.id = id;
     this.lat = lat;
     this.long = long;
+    this.nbCommande = 1;
   }
 
   toString() {
     let toString =
-      "ID: " + this.id + " LATITUDE: " + this.lat + " LONGITUDE: " + this.long;
+      "ID: " +
+      this.id +
+      " LATITUDE: " +
+      this.lat +
+      " LONGITUDE: " +
+      this.long +
+      " NBCOMMANDE: " +
+      this.nbCommande;
     return toString;
   }
 
