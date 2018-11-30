@@ -91,7 +91,7 @@ function orderSelection(orderMin, orderMax) {
     restaurant => restaurant.size >= orderMin && restaurant.size <= orderMax
   );
 
-  console.log();
+  console.log(JSON.stringify(restaurantList, 4, null));
   restaurantList.map(curr => {
     restaurantIds.push(curr.id);
   });
@@ -119,6 +119,110 @@ function cleanRepresentation() {
   links = null;
 
   svgContainer = d3.select("svg").remove();
+}
+
+function displayInformations(object) {
+  d3.select("#text").remove();
+  console.log(
+    "ID:" +
+      object.object.id +
+      " LAT: " +
+      object.object.lat +
+      " LONG: " +
+      object.object.long
+  );
+  if (object.object instanceof Restaurant) {
+    d3.json(
+      "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+        object.object.lat +
+        "," +
+        object.object.long +
+        "&key=AIzaSyB9Tdu8PtVPicW1aNqi24jDsKxboS9DOQE",
+      function(data) {
+        var text = svgContainer
+          .append("text")
+          .text(function() {
+            return [
+              "Restaurant id: " +
+                object.object.id +
+                " address: " +
+                data.results[0].formatted_address
+            ];
+          })
+          .attr("font-family", "Arial")
+          .attr("font-weight", "bold")
+          .attr("font-size", "16px")
+          .attr({
+            id: "text",
+            x: function() {
+              return object.x - 30;
+            },
+            y: function() {
+              return object.y - 15;
+            }
+          })
+          .attr("fill", "black")
+          .attr("stroke", "black")
+          .attr("stroke-width", ".2px");
+
+        var bbox = text.node().getBBox();
+        rectangleLabel
+          .attr("x", bbox.x - 6)
+          .attr("y", bbox.y)
+          .attr("rx", 10)
+          .attr("ry", 10)
+          .attr("width", bbox.width + 12)
+          .attr("height", bbox.height)
+          .attr("fill", "pink");
+      }
+    );
+  } else {
+    d3.json(
+      "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+        object.object.lat +
+        "," +
+        object.object.long +
+        "&key=AIzaSyB9Tdu8PtVPicW1aNqi24jDsKxboS9DOQE",
+      function(data) {
+        var text = svgContainer
+          .append("text")
+          .text(function() {
+            return [
+              "Client id: " +
+                object.object.id +
+                " address: " +
+                data.results[0].formatted_address
+            ];
+          })
+          .attr("font-family", "Arial")
+          .attr("font-weight", "bold")
+          .attr("font-size", "16px")
+          .attr({
+            id: "text",
+            x: function() {
+              return object.x - 30;
+            },
+            y: function() {
+              return object.y - 15;
+            }
+          })
+          .attr("fill", "black")
+          .attr("stroke", "black")
+          .attr("stroke-width", ".2px");
+
+        var bbox = text.node().getBBox();
+        rectangleLabel
+          .attr("x", bbox.x - 6)
+          .attr("y", bbox.y)
+          .attr("rx", 10)
+          .attr("ry", 10)
+          .attr("width", bbox.width + 12)
+          .attr("height", bbox.height)
+          .attr("fill", "pink");
+      }
+    );
+  }
+  d3.event.stopPropagation();
 }
 
 function uniq(a) {

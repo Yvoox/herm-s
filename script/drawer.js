@@ -5,6 +5,10 @@ function createSVGContainer() {
     .append("svg")
     .attr("width", width)
     .attr("height", height)
+    .on("click", function() {
+      d3.select("#text").remove();
+      d3.select("#label").remove();
+    })
     .call(
       d3.behavior.zoom().on("zoom", function() {
         svgContainer.attr(
@@ -18,6 +22,10 @@ function createSVGContainer() {
         );
       })
     );
+  rectangleLabel = svgContainer
+    .append("rect")
+    .attr("id", "label")
+    .attr("opacity", 100);
 }
 
 function createCircle(x, y, r) {
@@ -66,7 +74,8 @@ function createNodes(list) {
             radius: size,
             x: parseInt(e.lat),
             y: parseInt(e.long),
-            data: "r" + e.id
+            data: "r" + e.id,
+            object: e
           };
         }),
         root = tempNodes[0],
@@ -86,7 +95,8 @@ function createNodes(list) {
             radius: size,
             x: e.lat,
             y: e.long,
-            data: "r" + e.id
+            data: "r" + e.id,
+            object: e
           };
         }),
         root = tempNodes[0],
@@ -95,7 +105,7 @@ function createNodes(list) {
   } else {
     console.log("DRAW CUSTOMERS");
     var tempNodes = list.map(function(e) {
-        return { radius: 2, x: e.lat, y: e.long, data: "c" + e.id };
+        return { radius: 2, x: e.lat, y: e.long, data: "c" + e.id, object: e };
       }),
       root = tempNodes[0],
       color = d3.scale.category10();
@@ -182,10 +192,12 @@ function drawInContainer() {
     })
     .style("fill", function(d, i) {
       if (d.data.includes("r")) return "red";
-      else if (d.data.includes("r")) return "grey";
     })
     .attr("data", function(d) {
       return d.data;
+    })
+    .on("click", function(d) {
+      displayInformations(d);
     })
     .call(drag);
 

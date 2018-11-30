@@ -20,3 +20,4 @@ let svgContainer;
 let drawedNode = null;
 let links = null;
 let force = null;
+let rectangleLabel;
