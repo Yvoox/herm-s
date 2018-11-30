@@ -12,18 +12,32 @@
         <script type="text/javascript" src="./script/drawer.js"></script>
 
         <link rel="stylesheet" href="./style/style.css">
+        <link rel="stylesheet" href="./style/header-basic-light.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     </head>
+
     <body>
-      <ul>
-        <li style="float:left"><a class="boxed-hermes">Hermès</a></li>
-        <li style="cursor:pointer"><a><span onclick="openNav()">&#9776;</span></a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="help.html">Help</a></li>
-        <li><a href="index.html">Visualization</a></li>
-      </ul>
+      <header class="header-basic-light">
+
+        <div class="header-limiter">
+
+          <h1><a href="#">HERMES<span>PROJECT</span></a></h1>
+
+          <nav>
+            <a href="./index.html" class="selected">Visualization</a>
+            <a href="./help.html">Help</a>
+            <a href="./about.html">About</a>
+
+          </nav>
+        </div>
+
+      </header>
+      <div id="main">
+
 
       <div id="mySidenav" class="sidenav">
-        <p><input type="checkbox" id="reprType"> Geographical view</input></p><br>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="position:absolute;right:0;top:0;">&times;</a>
+        <p style="display:block;margin-left: auto;margin-right: auto;"><input type="checkbox" id="reprType" > Geographical view</input></p>
         <p>Time slot:<br><p>From: <input list="slots" name="timeslot" style="width: 40px;" id="hourStart">
           <datalist id="slots">
             <option value="00">
@@ -80,8 +94,8 @@
         <p>Number of orders (restaurant):<br><p>From : </p><input type="text" name="number" style="width: 100px;" id="orderMin"><p>To:</p><input type="text" name="number" style="width: 100px;" id="orderMax"></p><br>
         <p>Number of orders (customer):<br><p>From : </p><input type="text" name="number" style="width: 100px;" id="orderMinC"><p>To:</p><input type="text" name="number" style="width: 100px;" id="orderMaxC"></p><br>
 
-          <p><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI()">Go!</button>
-        <button type="button" style="width: 50px;" id="buttonRestart" onclick="restartUI()">Restart</button></p>
+          <p><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI();closeNav()">Go!</button>
+        <button type="button" style="width: 50px;" id="buttonRestart" onclick="restartUI();closeNav()">Restart</button></p>
       </div>
 
         <script type="text/javascript">
@@ -89,10 +103,20 @@
 if(ending) init(); });
 </script>
 
-        <script>
+<!--        <script>
         let open = false; function openNav() { if (open) {
 document.getElementById("mySidenav").style.width = "0px"; open = false; } else {
 document.getElementById("mySidenav").style.width = "250px"; open = true; } }
+</script> -->
+<script>
+function openNav() { document.getElementById("mySidenav").style.width = "250px";
+document.getElementById("main").style.marginLeft = "250px";
+document.body.style.backgroundColor = "rgba(0,0,0,0.4)"; } function closeNav() {
+document.getElementById("mySidenav").style.width = "0";
+document.getElementById("main").style.marginLeft = "0";
+document.body.style.backgroundColor = "white"; }
 </script>
+<i class="fas fa-ellipsis-v" onClick="openNav()"style="position:absolute;top:50%;left:98%;"></i>
+</div>
     </body>
 </html>

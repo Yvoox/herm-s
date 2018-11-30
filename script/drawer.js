@@ -8,6 +8,7 @@ function createSVGContainer() {
     .on("click", function() {
       d3.select("#text").remove();
       d3.select("#label").remove();
+      closeNav();
     })
     .call(
       d3.behavior.zoom().on("zoom", function() {

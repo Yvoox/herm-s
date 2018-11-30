@@ -10,89 +10,27 @@
         <script type="text/javascript" src="script/constantes.js"></script>
         <script type="text/javascript" src="script/utilitaries.js"></script>
         <script type="text/javascript" src="script/drawer.js"></script>
+        <link rel="stylesheet" href="./style/header-basic-light.css">
 
         <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
-      <ul>
-        <li style="float:left"><a class="boxed-hermes">Hermès</a></li>
-        <li style="cursor:pointer"><a><span onclick="openNav()">&#9776;</span></a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="help.html">Help</a></li>
-        <li><a href="index.html">Visualization</a></li>
-      </ul>
+      <header class="header-basic-light">
 
-      <div id="mySidenav" class="sidenav">
-        <a href="#"><input type="checkbox"> Geographical view</input></a><br>
-        <a href="#">Time slot:<br><p>From: <input list="slots" name="timeslot" style="width: 40px;">
-          <datalist id="slots">
-            <option value="00h">
-            <option value="01h">
-            <option value="02h">
-            <option value="03h">
-            <option value="04h">
-            <option value="05h">
-            <option value="06h">
-            <option value="07h">
-            <option value="08h">
-            <option value="09h">
-            <option value="10h">
-            <option value="11h">
-            <option value="12h">
-            <option value="13h">
-            <option value="14h">
-            <option value="15h">
-            <option value="16h">
-            <option value="17h">
-            <option value="18h">
-            <option value="19h">
-            <option value="20h">
-            <option value="21h">
-            <option value="22h">
-            <option value="23h">
-          </datalist>To: <input list="slots" name="timeslot" style="width: 40px;">
-          <datalist id="slots">
-            <option value="00h">
-            <option value="01h">
-            <option value="02h">
-            <option value="03h">
-            <option value="04h">
-            <option value="05h">
-            <option value="06h">
-            <option value="07h">
-            <option value="08h">
-            <option value="09h">
-            <option value="10h">
-            <option value="11h">
-            <option value="12h">
-            <option value="13h">
-            <option value="14h">
-            <option value="15h">
-            <option value="16h">
-            <option value="17h">
-            <option value="18h">
-            <option value="19h">
-            <option value="20h">
-            <option value="21h">
-            <option value="22h">
-            <option value="23h">
-          </datalist></p></a>
-        <a href="#">Number of orders:<br><input type="text" name="number" style="width: 100px;"></a><br>
-        <a href="#">Food:<br><input list="food" name="foodtype" style="width: 100px;">
-          <datalist id="food">
-            <option value="Breakfast">
-            <option value="Burger">
-            <option value="Chicken">
-            <option value="Kebab">
-            <option value="Pasta">
-            <option value="Pizza">
-            <option value="Salad">
-            <option value="Sandwich">
-            <option value="Sushi">
-            <option value="Tacos">
-          </datalist></a><br>
-        <a href="#"><button type="button" style="width: 50px;">Go!</button></a>
+      <div class="header-limiter">
+
+        <h1><a href="#">HERMES<span>PROJECT</span></a></h1>
+
+        <nav>
+          <a href="./index.html" class="selected">Visualization</a>
+          <a href="./help.html">Help</a>
+          <a href="./about.html">About</a>
+        </nav>
       </div>
+    </header>
+
+
+
 
       <div class="boxed">
     		<h1><center>Help</center></h1>
@@ -106,16 +44,9 @@
     	</div>
 
         <script>
-        let open = false;
-        function openNav() {
-          if(open) {
-            document.getElementById("mySidenav").style.width = "0px";
-            open = false;
-          } else {
-            document.getElementById("mySidenav").style.width = "250px";
-            open = true;
-          }
-        }
-        </script>
+        let open = false; function openNav() { if(open) {
+document.getElementById("mySidenav").style.width = "0px"; open = false; } else {
+document.getElementById("mySidenav").style.width = "250px"; open = true; } }
+</script>
     </body>
 </html>
