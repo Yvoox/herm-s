@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Data Visualization</title>
+        <script type="text/javascript" src="./d3/d3.v3.js"></script>
+        <script type="text/javascript" src="./script/import.js"></script>
+
+        <script type="text/javascript" src="./script/objects.js"></script>
+        <script type="text/javascript" src="./script/constantes.js"></script>
+        <script type="text/javascript" src="./script/utilitaries.js"></script>
+        <script type="text/javascript" src="./script/drawer.js"></script>
+
+        <link rel="stylesheet" href="./style/style.css">
+        <link rel="stylesheet" href="./style/header-basic-light.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    </head>
+
+    <body>
+      <header class="header-basic-light">
+
+        <div class="header-limiter">
+
+          <h1><a href="#">HERMES<span>PROJECT</span></a></h1>
+
+          <nav>
+            <a href="./index.html" class="selected">Visualization</a>
+            <a href="./help.html">Help</a>
+            <a href="./about.html">About</a>
+
+          </nav>
+        </div>
+
+      </header>
+      <div id="main">
+
+
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="position:absolute;right:0;top:0;">&times;</a>
+        <p style="display:block;margin-left: 10px;margin-right: auto;"><input type="checkbox" id="reprType" > Geographical view</input></p>
+        <p style="text-align: center;">Time slot:<br><p style="margin:10px;">From: <input list="slots" name="timeslot" style="width: 40px;" id="hourStart">
+          <datalist id="slots">
+            <option value="00">
+            <option value="01">
+            <option value="02">
+            <option value="03">
+            <option value="04">
+            <option value="05">
+            <option value="06">
+            <option value="07">
+            <option value="08">
+            <option value="09">
+            <option value="10">
+            <option value="11">
+            <option value="12">
+            <option value="13">
+            <option value="14">
+            <option value="15">
+            <option value="16">
+            <option value="17">
+            <option value="18">
+            <option value="19">
+            <option value="20">
+            <option value="21">
+            <option value="22">
+            <option value="23">
+          </datalist>To: <input list="slots" name="timeslot" style="width: 40px;" id="hourEnd">
+          <datalist id="slots">
+            <option value="00">
+            <option value="01">
+            <option value="02">
+            <option value="03">
+            <option value="04">
+            <option value="05">
+            <option value="06">
+            <option value="07">
+            <option value="08">
+            <option value="09">
+            <option value="10">
+            <option value="11">
+            <option value="12">
+            <option value="13">
+            <option value="14">
+            <option value="15">
+            <option value="16">
+            <option value="17">
+            <option value="18">
+            <option value="19">
+            <option value="20">
+            <option value="21">
+            <option value="22">
+            <option value="23">
+          </datalist></p></p>
+        <p style="text-align: center;">Number of orders (restaurant):<br><p style="margin:10px;">From : </p><input type="text" name="number" style="width: 100px;margin:10px;" id="orderMin"><p style="margin:10px;">To:</p><input type="text" name="number" style="width: 100px;margin:10px;" id="orderMax"></p><br>
+        <p style="text-align: center;">Number of orders (customer):<br><p style="margin:10px;">From : </p><input type="text" name="number" style="width: 100px;margin:10px;" id="orderMinC"><p style="margin:10px;">To:</p><input type="text" name="number" style="width: 100px;margin:10px;" id="orderMaxC"></p><br>
+
+          <p style="text-align: center;"><button type="button" style="width: 50px;" id="buttonGo" onclick="updateUI();closeNav()">Go!</button>
+        <button type="button" style="width: 60px;margin-left:5%;" id="buttonRestart" onclick="restartUI();closeNav()">Restart</button></p>
+      </div>
+
+        <script type="text/javascript">
+        dataPath = "./data/dataviz.csv"; csvImportD3(dataPath, function(ending) {
+if(ending) init(); });
+</script>
+
+<!--        <script>
+        let open = false; function openNav() { if (open) {
+document.getElementById("mySidenav").style.width = "0px"; open = false; } else {
+document.getElementById("mySidenav").style.width = "250px"; open = true; } }
+</script> -->
+<script>
+function openNav() { document.getElementById("mySidenav").style.width = "250px";
+document.body.style.backgroundColor = "rgba(0,0,0,0.4)"; } function closeNav() {
+document.getElementById("mySidenav").style.width = "0";
+document.body.style.backgroundColor = "white"; }
+</script>
+<i class="fas fa-ellipsis-v" onClick="openNav()"style="position:absolute;top:50%;left:98%;"></i>
+</div>
+    </body>
+</html>

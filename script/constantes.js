@@ -3,6 +3,9 @@ let EARTH_RADIUS = 6371000;
 let width = window.innerWidth - 20,
   height = window.innerHeight - 100;
 
+let message =
+  "Welcome to our Visualization ! Choose a section to show interesting facts";
+
 let nodes = [];
 let dataPath;
 let importRestaurantList = [];
@@ -21,3 +24,5 @@ let drawedNode = null;
 let links = null;
 let force = null;
 let rectangleLabel;
+
+let t1, t2, t3, t4;

@@ -19,6 +19,7 @@ function normalize(val, max, min) {
 function init() {
   initCreation(function(callback) {
     if (callback) drawInContainer();
+    initText();
   });
 }
 //TODO BEFORE DRAWING
@@ -82,6 +83,9 @@ function timeSelection(hourStart, hourEnd) {
   });
 
   customerList = uniq(customerList);
+  console.log("CUSTOMER LENGTH: " + customerList.length);
+  console.log("RESTAURANT LENGTH: " + restaurantList.length);
+  console.log("DELIVERY LENGTH: " + deliveryList.length);
 }
 
 function orderSelection(orderMin, orderMax) {
@@ -106,6 +110,9 @@ function orderSelection(orderMin, orderMax) {
     customerIds.includes(customer.id)
   );
   customerList = uniq(customerList);
+  console.log("CUSTOMER LENGTH: " + customerList.length);
+  console.log("RESTAURANT LENGTH: " + restaurantList.length);
+  console.log("DELIVERY LENGTH: " + deliveryList.length);
 }
 
 function customerSelection(orderMin, orderMax) {
@@ -131,6 +138,9 @@ function customerSelection(orderMin, orderMax) {
     restaurantIds.includes(restaurant.id)
   );
   customerList = uniq(customerList);
+  console.log("CUSTOMER LENGTH: " + customerList.length);
+  console.log("RESTAURANT LENGTH: " + restaurantList.length);
+  console.log("DELIVERY LENGTH: " + deliveryList.length);
 }
 
 function cleanRepresentation() {
@@ -338,4 +348,127 @@ function displayInformations(object) {
 
 function uniq(a) {
   return Array.from(new Set(a));
+}
+
+function initText() {
+  svgContainer
+    .append("text")
+    .text(message)
+    .attr("x", 10)
+    .attr("y", 20);
+}
+
+function timeClick() {
+  svgContainer.selectAll("text").remove();
+  clearAllTimers();
+  t1 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 20);
+  }, 1000);
+  t2 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 50);
+  }, 5000);
+  t3 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 80);
+  }, 10000);
+}
+function restaurantClick() {
+  svgContainer.selectAll("text").remove();
+  clearAllTimers();
+  t1 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 20);
+  }, 1000);
+  t2 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 50);
+  }, 5000);
+  t3 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 80);
+  }, 10000);
+}
+function customerClick() {
+  svgContainer.selectAll("text").remove();
+  clearAllTimers();
+  t1 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 20);
+  }, 1000);
+  t2 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 50);
+  }, 5000);
+  t3 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 80);
+  }, 10000);
+  t4 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 110);
+  }, 15000);
+}
+function mapClick() {
+  svgContainer.selectAll("text").remove();
+  clearAllTimers();
+  t1 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 20);
+  }, 1000);
+  t2 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 50);
+  }, 5000);
+  t3 = setTimeout(() => {
+    svgContainer
+      .append("text")
+      .text("TIME SELECTION")
+      .attr("x", 10)
+      .attr("y", 80);
+  }, 10000);
+}
+
+function clearAllTimers() {
+  clearTimeout(t1);
+  clearTimeout(t2);
+  clearTimeout(t3);
+  clearTimeout(t4);
 }
