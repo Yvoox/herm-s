@@ -19,7 +19,6 @@ function normalize(val, max, min) {
 function init() {
   initCreation(function(callback) {
     if (callback) drawInContainer();
-    initText();
   });
 }
 //TODO BEFORE DRAWING
@@ -359,88 +358,162 @@ function initText() {
 }
 
 function timeClick() {
+  buttonClicked = true;
   svgContainer.selectAll("text").remove();
   clearAllTimers();
   t1 = setTimeout(() => {
+    restartUI();
+    timeSelection(5, 12);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text(
+        "Only 3% of orders are placed before noon compared to 97% in the afternoon."
+      )
       .attr("x", 10)
       .attr("y", 20);
   }, 1000);
-  t2 = setTimeout(() => {
+  t1 = setTimeout(() => {
+    restartUI();
+    timeSelection(12, 23);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text(
+        "Only 3% of orders are placed before noon compared to 97% in the afternoon."
+      )
+      .attr("x", 10)
+      .attr("y", 20);
+  }, 7000);
+  t2 = setTimeout(() => {
+    restartUI();
+    timeSelection(12, 14);
+    cleanRepresentation();
+    init();
+    svgContainer
+      .append("text")
+      .text("Only 46 orders were placed between 12 and 14H.")
       .attr("x", 10)
       .attr("y", 50);
-  }, 5000);
+  }, 13000);
   t3 = setTimeout(() => {
+    restartUI();
+    timeSelection(17, 23);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text("89% of meals are delivered in the evening (between 17H and 23H)")
       .attr("x", 10)
       .attr("y", 80);
-  }, 10000);
+  }, 19000);
 }
 function restaurantClick() {
+  buttonClicked = true;
   svgContainer.selectAll("text").remove();
   clearAllTimers();
   t1 = setTimeout(() => {
+    restartUI();
+    orderSelection(900, 995);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text("The best restaurant has 995 orders!")
       .attr("x", 10)
       .attr("y", 20);
   }, 1000);
   t2 = setTimeout(() => {
+    restartUI();
+    orderSelection(1, 10);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text("50% of restaurants have between 1 and 10 orders.")
       .attr("x", 10)
       .attr("y", 50);
-  }, 5000);
+  }, 7000);
   t3 = setTimeout(() => {
+    restartUI();
+    orderSelection(100, 1000);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text("3 restaurants share 75% of the orders.")
       .attr("x", 10)
       .attr("y", 80);
-  }, 10000);
+  }, 13000);
 }
 function customerClick() {
+  buttonClicked = true;
   svgContainer.selectAll("text").remove();
   clearAllTimers();
   t1 = setTimeout(() => {
+    restartUI();
+    customerSelection(1, 10);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text("96% of customers order between 1 and 10 times & 55% only once.")
       .attr("x", 10)
       .attr("y", 20);
   }, 1000);
-  t2 = setTimeout(() => {
+  t1 = setTimeout(() => {
+    restartUI();
+    customerSelection(1, 1);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text("96% of customers order between 1 and 10 times & 55% only once.")
+      .attr("x", 10)
+      .attr("y", 20);
+  }, 7000);
+  t2 = setTimeout(() => {
+    restartUI();
+    customerSelection(10, 20);
+    cleanRepresentation();
+    init();
+    svgContainer
+      .append("text")
+      .text("20 customers ordered between 10 and 20 times.")
       .attr("x", 10)
       .attr("y", 50);
-  }, 5000);
+  }, 13000);
   t3 = setTimeout(() => {
+    restartUI();
+    customerSelection(20, 30);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text(
+        "Only 1% of customers are regular customers (between 20 & 30 orders)"
+      )
       .attr("x", 10)
       .attr("y", 80);
-  }, 10000);
+  }, 19000);
   t4 = setTimeout(() => {
+    restartUI();
+    customerSelection(30, 100);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text(
+        "2 customers have ordered more than 30 times in 13 different restaurants. Thanks to them !"
+      )
       .attr("x", 10)
       .attr("y", 110);
-  }, 15000);
+  }, 26000);
 }
 function mapClick() {
+  buttonClicked = true;
   svgContainer.selectAll("text").remove();
   clearAllTimers();
   t1 = setTimeout(() => {
@@ -456,14 +529,14 @@ function mapClick() {
       .text("TIME SELECTION")
       .attr("x", 10)
       .attr("y", 50);
-  }, 5000);
+  }, 7000);
   t3 = setTimeout(() => {
     svgContainer
       .append("text")
       .text("TIME SELECTION")
       .attr("x", 10)
       .attr("y", 80);
-  }, 10000);
+  }, 13000);
 }
 
 function clearAllTimers() {

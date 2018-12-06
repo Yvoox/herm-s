@@ -4,7 +4,7 @@ let width = window.innerWidth - 20,
   height = window.innerHeight - 100;
 
 let message =
-  "Welcome to our Visualization ! Choose a section to show interesting facts";
+  "Welcome to our Visualization ! Choose a section to show interesting facts inside 2000 delivries, 32 restaurants & 528 customers";
 
 let nodes = [];
 let dataPath;
@@ -26,3 +26,8 @@ let force = null;
 let rectangleLabel;
 
 let t1, t2, t3, t4;
+let buttonClicked = false;
+var colors = {
+  restaurant: "red",
+  customer: "#000000"
+};
