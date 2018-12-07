@@ -17,6 +17,10 @@ function normalize(val, max, min) {
 }
 
 function init() {
+  if (!firstInit) {
+    drawLegend();
+    firstInit = true;
+  }
   initCreation(function(callback) {
     if (callback) drawInContainer();
   });
@@ -114,6 +118,37 @@ function orderSelection(orderMin, orderMax) {
   console.log("DELIVERY LENGTH: " + deliveryList.length);
 }
 
+function areaSelection(centerLat, centerLong, radius) {
+  //radius in meters
+
+  var restaurantIds = [];
+  var customerIds = [];
+  customerList = customerList.filter(
+    customer =>
+      getDistance(centerLat, centerLong, customer.lat, customer.long) <=
+      radius / 1000
+  );
+
+  console.log(JSON.stringify(customerList, 4, null));
+  customerList.map(curr => {
+    customerIds.push(curr.id);
+  });
+  deliveryList = deliveryList.filter(delivery =>
+    customerIds.includes(delivery.customerId)
+  );
+  deliveryList.map(curr => {
+    restaurantIds.push(curr.restaurantId);
+  });
+
+  restaurantList = restaurantList.filter(restaurant =>
+    restaurantIds.includes(restaurant.id)
+  );
+  customerList = uniq(customerList);
+  console.log("CUSTOMER LENGTH: " + customerList.length);
+  console.log("RESTAURANT LENGTH: " + restaurantList.length);
+  console.log("DELIVERY LENGTH: " + deliveryList.length);
+}
+
 function customerSelection(orderMin, orderMax) {
   var restaurantIds = [];
   var customerIds = [];
@@ -152,7 +187,8 @@ function cleanRepresentation() {
   dataLinks = [];
   links = null;
 
-  svgContainer = d3.select("svg").remove();
+  //svgContainer = d3.select("svg").remove();
+  svgContainer = svgContainer.remove();
 }
 
 function displayInformations(object) {
@@ -517,23 +553,39 @@ function mapClick() {
   svgContainer.selectAll("text").remove();
   clearAllTimers();
   t1 = setTimeout(() => {
+    restartUI();
+    areaSelection(46.5196535, 6.6322734, 1000);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text(
+        "A quarter of the orders are made in the center of lausanne. (<1km)"
+      )
       .attr("x", 10)
       .attr("y", 20);
   }, 1000);
   t2 = setTimeout(() => {
+    restartUI();
+    areaSelection(46.5196535, 6.6322734, 2000);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text(
+        "Half of the clients are concentrated in the first 2 km around the city center."
+      )
       .attr("x", 10)
       .attr("y", 50);
   }, 7000);
   t3 = setTimeout(() => {
+    restartUI();
+    areaSelection(46.518394, 6.568469, 800);
+    cleanRepresentation();
+    init();
     svgContainer
       .append("text")
-      .text("TIME SELECTION")
+      .text("There are 5 clients on the EPFL campus ! ;)")
       .attr("x", 10)
       .attr("y", 80);
   }, 13000);
@@ -544,4 +596,25 @@ function clearAllTimers() {
   clearTimeout(t2);
   clearTimeout(t3);
   clearTimeout(t4);
+}
+
+function radians(degrees) {
+  var pi = Math.PI;
+  return degrees * (pi / 180);
+}
+
+function getDistance(lat1, lon1, lat2, lon2) {
+  var r = EARTH_RADIUS / 1000;
+  var dLat = radians(lat2 - lat1); //
+  var dLon = radians(lon2 - lon1);
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(radians(lat1)) *
+      Math.cos(radians(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = r * c; // Distance in km
+  return d;
 }

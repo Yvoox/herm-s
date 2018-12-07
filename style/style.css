@@ -61,6 +61,16 @@ li {
   float: right;
 }
 
+#legend {
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  left: 90%;
+  margin: 10px 0 0 3px;
+  font-weight: 600;
+  fill: #fff;
+}
+
 li a {
   display: block;
   color: rgb(0, 0, 100);

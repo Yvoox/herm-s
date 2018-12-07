@@ -1,5 +1,6 @@
 // Radius of the earth in meters
 let EARTH_RADIUS = 6371000;
+let firstInit = false;
 let width = window.innerWidth - 20,
   height = window.innerHeight - 100;
 

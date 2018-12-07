@@ -1,7 +1,7 @@
 function createSVGContainer() {
   //Make an SVG Container
   svgContainer = d3
-    .select("body")
+    .select("#main")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -119,14 +119,13 @@ function createNodes(list) {
 }
 
 function drawInContainer() {
-  drawLegend();
-  var drag = d3.behavior
+  /*var drag = d3.behavior
     .drag()
     .on("drag", dragmove)
     .origin(function() {
       var t = d3.transform(d3.select(this).attr("transform"));
       return { x: t.translate[0], y: t.translate[1] };
-    });
+    });*/
 
   const x_value_range = [
     d3.min(nodes.slice(2), d => d.x),
@@ -201,8 +200,8 @@ function drawInContainer() {
     })
     .on("click", function(d) {
       displayInformations(d);
-    })
-    .call(drag);
+    });
+  //.call(drag);
 
   console.log("NODES : " + JSON.stringify(nodes, 4, null));
   console.log("SVGCONTAINER : " + JSON.stringify(svgContainer, 4, null));
@@ -269,6 +268,15 @@ function updateUI() {
   let orderMax = d3.select("#orderMax").property("value");
   let orderMinC = d3.select("#orderMinC").property("value");
   let orderMaxC = d3.select("#orderMaxC").property("value");
+  let longitude = d3.select("#longitude").property("value");
+  let latitude = d3.select("#latitude").property("value");
+  let radius = d3.select("#radius").property("value");
+
+  if (longitude != "" && latitude != "" && radius != "") {
+    areaSelection(latitude, longitude, radius);
+    cleanRepresentation();
+    init();
+  }
 
   if (hourStart != "" && hourEnd != "" && hourStart < hourEnd) {
     timeSelection(hourStart, hourEnd);
@@ -306,6 +314,9 @@ function restartUI() {
   d3.select("#orderMax").property("value", "");
   d3.select("#orderMinC").property("value", "");
   d3.select("#orderMaxC").property("value", "");
+  d3.select("#longitude").property("value", "");
+  d3.select("#latitude").property("value", "");
+  d3.select("#radius").property("value", "");
   customerList = importCustomerList;
   restaurantList = importRestaurantList;
   deliveryList = importDeliveryList;
@@ -316,7 +327,7 @@ function restartUI() {
 function drawLegend() {
   // Dimensions of legend item: width, height, spacing, radius of rounded rect.
   var li = {
-    w: 75,
+    w: 100,
     h: 30,
     s: 3,
     r: 3
