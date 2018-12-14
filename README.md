@@ -9,6 +9,10 @@ script : .script/\*
 # Github page
 https://yvoox.github.io/hermes
 
+# Report
+
+https://github.com/Yvoox/hermes/blob/master/report.pdf
+
 # Abstract
 
 The goal of our project, related to the company Smood, is to provide a powerful visualization tool for managers and salespeople, in order to allow them to draw information about their customers, for the purpose of commercial expansion.
