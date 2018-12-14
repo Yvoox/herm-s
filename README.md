@@ -6,6 +6,9 @@ dataset : ./data/dataviz.csv
 
 script : .script/\*
 
+# Github page
+https://yvoox.github.io/hermes
+
 # Abstract
 
 The goal of our project, related to the company Smood, is to provide a powerful visualization tool for managers and salespeople, in order to allow them to draw information about their customers, for the purpose of commercial expansion.
@@ -58,6 +61,7 @@ To start our project, simply place the entire repository in an HTTP server.
 It is also possible to use a compressed version of D3 to gain space and add an external import of Jquery (not realized here for an access problem of the github page).
 
 # Some useful links
+
 https://d3js.org
 https://beta.observablehq.com/@mbostock/d3-force-directed-graph
 
