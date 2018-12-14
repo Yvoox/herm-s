@@ -63,5 +63,6 @@ It is also possible to use a compressed version of D3 to gain space and add an e
 # Some useful links
 
 https://d3js.org
+
 https://beta.observablehq.com/@mbostock/d3-force-directed-graph
 
